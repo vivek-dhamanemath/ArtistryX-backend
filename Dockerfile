@@ -5,10 +5,10 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the jar file from your local machine to the Docker container
-COPY target/your-application.jar app.jar
+COPY target/SpringBoot_Actor-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the port that the app will run on
-EXPOSE 8080
+EXPOSE 8081
 
 # Run the jar file
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"
