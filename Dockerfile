@@ -1,14 +1,11 @@
-# Use a base image with JDK
-FROM openjdk:17-jdk-slim
+FROM docker pull maven:3-eclipse-temurin-17 AS build
+COPY . .
+RUN mvn clean package
 
-# Set the working directory
-WORKDIR /app
-
+FROM eclipse-temurin:17-alpine
 # Copy the jar file from your local machine to the Docker container
-COPY target/SpringBoot_Actor-0.0.1-SNAPSHOT.jar app.jar
-
-# Expose the port that the app will run on
+COPY --from=build /target/*.jar app.jar
 EXPOSE 8081
 
 # Run the jar file
-ENTRYPOINT ["java", "-jar", "app.jar"
+ENTRYPOINT ["java", "-jar", "app.jar"]
