@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 
-@CrossOrigin(origins = "https://artistryx-a23zdhptw-vivek-s-projects-78825531.vercel.app/login", allowCredentials = "true")
+@CrossOrigin(origins = "https://artistryx-qrahmtpsx-vivek-s-projects-78825531.vercel.app/login", allowCredentials = "true")
 @RestController
 @RequestMapping("api/auth")
 public class GoogleAuthController {
