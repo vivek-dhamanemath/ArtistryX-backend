@@ -37,6 +37,7 @@ public class ArtistServiceImpl implements ArtistService {
         );
 
         Artist savedArtist = artistRepository.save(artist);
+        System.out.println("Saved artist: " + savedArtist);
         
         ArtistDTO responseDTO = new ArtistDTO(
             savedArtist.getArtistName(),
