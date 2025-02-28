@@ -39,7 +39,7 @@ public class SecurityConfig {
     
         // Allow multiple origins without specifying exact paths
         configuration.setAllowedOrigins(List.of(
-            "https://artistryx-qrahmtpsx-vivek-s-projects-78825531.vercel.app",
+            "https://artistryx.vercel.app/login",
             "http://localhost:8081"
         ));
 
