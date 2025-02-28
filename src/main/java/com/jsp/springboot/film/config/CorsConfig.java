@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://artistryx-qrahmtpsx-vivek-s-projects-78825531.vercel.app/login", "https://artistryx-qrahmtpsx-vivek-s-projects-78825531.vercel.app/register")
+                        .allowedOrigins("https://artistryx-qrahmtpsx-vivek-s-projects-78825531.vercel.app") // Domain only
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
