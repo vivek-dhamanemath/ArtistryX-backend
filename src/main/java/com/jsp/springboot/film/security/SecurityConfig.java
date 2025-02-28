@@ -36,15 +36,23 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(List.of("https://artistryx-qrahmtpsx-vivek-s-projects-78825531.vercel.app/login", "http://localhost:8081/api/auth/google-login")); // Add your frontend URL(s)
+    
+        // Allow multiple origins without specifying exact paths
+        configuration.setAllowedOrigins(List.of(
+            "https://artistryx-qrahmtpsx-vivek-s-projects-78825531.vercel.app",
+            "http://localhost:8081"
+        ));
+
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        configuration.setExposedHeaders(List.of("Authorization")); // In case you need to expose headers
         configuration.setAllowCredentials(true);
-        
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
