@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping({"/api", "https://artistryx.vercel.app/register"})
+@RequestMapping("/api")
 public class RegistrationController {
 
     @Autowired
