@@ -13,7 +13,7 @@ import com.jsp.springboot.film.serviceimpl.PasswordResetServiceImpl;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = {"https://artistryx.vercel.app/login", "https://artistryx.vercel.app/register"}) // ✅ Ensure frontend can access
+@CrossOrigin(origins = {"https://artistryx.vercel.app"}) // ✅ Ensure frontend can access
 public class PasswordResetController {
 
     @Autowired
