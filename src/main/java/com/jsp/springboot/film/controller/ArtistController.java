@@ -9,7 +9,7 @@ import com.jsp.springboot.artist.utility.ResponseStrcture;
 import com.jsp.springboot.film.dto.ArtistDTO;
 import com.jsp.springboot.film.service.ArtistService;
 
-@CrossOrigin(origins = {"https://artistryx.vercel.app/login", "https://artistryx.vercel.app/register"}) // Allow frontend access
+@CrossOrigin(origins = {"https://artistryx.vercel.app}) // Allow frontend access
 @RestController
 @RequestMapping("/api/artists")
 public class ArtistController {
