@@ -16,7 +16,8 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         .allowedOrigins("https://artistryx.vercel.app")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("Content-Type", "Authorization")
+                        .allowedHeaders("Content-Type", "Authorization", "Accept")
+                        .exposedHeaders("Authorization")
                         .allowCredentials(true);
             }
         };
