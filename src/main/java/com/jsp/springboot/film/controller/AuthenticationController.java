@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping({"/api/auth", "https://artistryx.vercel.app/register"})
+@RequestMapping("/api/auth")
 public class AuthenticationController {
     
     private final AuthenticationManager authenticationManager;
