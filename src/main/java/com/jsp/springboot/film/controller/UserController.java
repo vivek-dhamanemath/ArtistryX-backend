@@ -12,7 +12,7 @@ import com.jsp.springboot.film.entity.User;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = {"https://artistryx.vercel.app")} // Allow frontend access
+@CrossOrigin(origins = {"https://artistryx.vercel.app"})// Allow frontend access
 public class UserController {
 
     @Autowired
