@@ -13,11 +13,11 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
+                registry.addMapping("/api/**")
                         .allowedOrigins("https://artistryx.vercel.app")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("Content-Type", "Authorization", "Accept")
-                        .exposedHeaders("Authorization")
+                        .exposedHeaders("Authorization", "Access-Control-Allow-Origin")
                         .allowCredentials(true);
             }
         };
