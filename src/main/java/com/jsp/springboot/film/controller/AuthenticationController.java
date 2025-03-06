@@ -19,8 +19,9 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
+@CrossOrigin(origins = "https://artistryx.vercel.app") // Allow frontend access
 public class AuthenticationController {
-    
+
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
     private final JwtUtil jwtUtil;
@@ -35,18 +36,18 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> loginUser(@RequestBody User user) {
-        System.out.println("🔹 Attempting login for: " + user.getUsername());
+        System.out.println("Attempting login for: " + user.getUsername());
 
         User dbUser = userService.findByUsername(user.getUsername())
                 .orElseThrow(() -> {
-                    System.out.println("❌ User not found: " + user.getUsername());
-                    return new UsernameNotFoundException("❌ User not found");
+                    System.out.println("User not found: " + user.getUsername());
+                    return new UsernameNotFoundException("User not found");
                 });
 
         if (!passwordEncoder.matches(user.getPassword(), dbUser.getPassword())) {
-            System.out.println("❌ Password does not match!");
+            System.out.println("Password does not match!");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(Collections.singletonMap("error", "❌ Invalid credentials."));
+                    .body(Collections.singletonMap("error", "Invalid credentials."));
         }
 
         UserDetails userDetails = org.springframework.security.core.userdetails.User
@@ -64,11 +65,11 @@ public class AuthenticationController {
         try {
             if (userService.findByUsername(user.getUsername()).isPresent()) {
                 return ResponseEntity.status(HttpStatus.CONFLICT)
-                                     .body(Map.of("error", "❌ Username already exists!"));
+                                     .body(Map.of("error", "Username already exists!"));
             }
             if (userService.findByEmail(user.getEmail()).isPresent()) {
                 return ResponseEntity.status(HttpStatus.CONFLICT)
-                                     .body(Map.of("error", "❌ Email already registered!"));
+                                     .body(Map.of("error", "Email already registered!"));
             }
 
             String message = userService.registerUser(user);
@@ -76,7 +77,7 @@ public class AuthenticationController {
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                 .body(Map.of("error", "❌ Registration failed due to a server error."));
+                                 .body(Map.of("error", "Registration failed due to a server error."));
         }
     }
 
@@ -84,9 +85,9 @@ public class AuthenticationController {
     public ResponseEntity<Map<String, String>> checkUsername(@RequestParam String username) {
         boolean exists = userService.findByUsername(username).isPresent();
         if (exists) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("message", "❌ Username already taken"));
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("message", "Username already taken"));
         }
-        return ResponseEntity.ok(Map.of("message", "✅ Username is available"));
+        return ResponseEntity.ok(Map.of("message", "Username is available"));
     }
 
     @GetMapping("/check-email")
@@ -94,8 +95,8 @@ public class AuthenticationController {
         boolean exists = userService.findByEmail(email).isPresent();
         if (exists) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
-                    .body(Map.of("message", "❌ Email already registered!"));
+                    .body(Map.of("message", "Email already registered!"));
         }
-        return ResponseEntity.ok(Map.of("message", "✅ Email is available"));
+        return ResponseEntity.ok(Map.of("message", "Email is available"));
     }
 }
