@@ -3,7 +3,6 @@ package com.jsp.springboot.film.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,12 +13,11 @@ import com.jsp.springboot.film.service.UserService;
 import com.jsp.springboot.film.entity.User;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "https://artistryx.vercel.app") // Allow frontend access
+// @CrossOrigin(origins = "https://artistryx.vercel.app") // Remove this line
 public class AuthenticationController {
 
     private final AuthenticationManager authenticationManager;
@@ -65,11 +63,11 @@ public class AuthenticationController {
         try {
             if (userService.findByUsername(user.getUsername()).isPresent()) {
                 return ResponseEntity.status(HttpStatus.CONFLICT)
-                                     .body(Map.of("error", "Username already exists!"));
+                        .body(Map.of("error", "Username already exists!"));
             }
             if (userService.findByEmail(user.getEmail()).isPresent()) {
                 return ResponseEntity.status(HttpStatus.CONFLICT)
-                                     .body(Map.of("error", "Email already registered!"));
+                        .body(Map.of("error", "Email already registered!"));
             }
 
             String message = userService.registerUser(user);
@@ -77,7 +75,7 @@ public class AuthenticationController {
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                 .body(Map.of("error", "Registration failed due to a server error."));
+                    .body(Map.of("error", "Registration failed due to a server error."));
         }
     }
 
