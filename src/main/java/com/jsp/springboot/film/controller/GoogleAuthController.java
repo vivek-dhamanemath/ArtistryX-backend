@@ -24,7 +24,7 @@ import java.util.Optional;
 @RequestMapping("api/auth")
 public class GoogleAuthController {
 
-    private static final String CLIENT_ID = "979081682205-24a4jjvat3enner3bvnvf4rmua8cs0rs.apps.googleusercontent.com";
+    private static final String CLIENT_ID = "   ";
 
     @Value("${jwt.secret}") // ✅ Inject secret key from properties
     private String secretKey;
